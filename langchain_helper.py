@@ -23,7 +23,7 @@ class Deck(BaseModel):
 def create_vector_db(pdf_path)->FAISS:
     loader = PyPDFLoader(file_path=pdf_path, extract_images=False)
     docs = loader.load()
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size= 10000, chunk_overlap=200)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size= 1000, chunk_overlap=100)
     texts = text_splitter.split_documents(docs)
     db = FAISS.from_documents(texts, embeddings)
     return db
